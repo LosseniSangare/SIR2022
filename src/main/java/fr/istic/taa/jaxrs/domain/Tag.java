@@ -1,28 +1,33 @@
 package fr.istic.taa.jaxrs.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import fr.istic.taa.jaxrs.dao.generic.TagDao;
+import fr.istic.taa.jaxrs.dto.TagDTO;
 
 @Entity
 public class Tag implements Serializable{
 	private Long id;
 	private String libelle;
-	private Fiche fiche;
-	private TagFiche tag_fiche; 
+	private List<TagFiche> tagFiche = new ArrayList<TagFiche>();
 	
 	public Tag() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
-	public Tag(String libelle, TagFiche tag_fiche ) {
+	public Tag(String libelle) {
 		super();
 		this.libelle = libelle;
-		this.tag_fiche = tag_fiche;
 	}
 
 	@Id
@@ -43,25 +48,21 @@ public class Tag implements Serializable{
 		this.libelle = libelle;
 	}
 	
-	@ManyToOne
-	public Fiche getFiche() {
-		return fiche;
+	@JsonIgnore
+	@OneToMany(mappedBy = "tag",cascade = CascadeType.PERSIST)
+	public List<TagFiche> getTagFiche() {
+		return tagFiche;
 	}
 	
-	public void setFiche(Fiche fiche) {
-		this.fiche = fiche;
+	public void setTagFiche(List<TagFiche> tagFiche) {
+		this.tagFiche = tagFiche;
 	}
 	
-	@ManyToOne
-	public TagFiche getTag_fiche() {
-		return tag_fiche;
+	public static Tag dtoToTag(TagDTO tagDto) {
+		Tag tag = new Tag();
+		tag.libelle = tagDto.getLibelle();
+		return tag;
 	}
-
-	public void setTag_fiche(TagFiche tag_fiche) {
-		this.tag_fiche = tag_fiche;
-	}
-	
-	
 	
 
 }

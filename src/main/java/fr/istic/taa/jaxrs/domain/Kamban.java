@@ -1,6 +1,7 @@
 package fr.istic.taa.jaxrs.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import fr.istic.taa.jaxrs.dto.KambanDTO;
 
 @Entity
 public class Kamban implements Serializable{
@@ -17,16 +22,17 @@ public class Kamban implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String libelle;
-	private List<Section> section;
+	private List<Section> section ;
 	
 	public Kamban() {
 		super();
 	}
 
-	public Kamban(long id, String libelle) {
+	public Kamban(Long id, String libelle) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
+		section = new ArrayList<Section>();
 	}
 
 	@Id
@@ -35,7 +41,7 @@ public class Kamban implements Serializable{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -47,6 +53,7 @@ public class Kamban implements Serializable{
 		this.libelle = libelle;
 	}
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "kamban", cascade = CascadeType.PERSIST)
 	public List<Section> getSection() {
 		return section;
@@ -57,5 +64,10 @@ public class Kamban implements Serializable{
 	}
 	
 	
+	public static Kamban dtoToKamban(KambanDTO kdto) {
+		Kamban kb = new Kamban();
+		kb.libelle = kdto.getLibelle();
+		return kb;
+	}
 	
 }

@@ -10,8 +10,8 @@ public class UtilisateurDao extends AbstractJpaDao<String, Utilisateur>{
 		super(Utilisateur.class);
 	}
 	
-	public List<Utilisateur> getAllUser(){
-		String query = "select distinc k.owner from Fiche as Fi";
-		return this.entityManager.createQuery(query).getResultList();
-	}
+//	public List<Utilisateur> getAllUser(){
+//		String query = "select distinc k.owner from Fiche as Fi";
+//		return this.entityManager.createQuery(query).getResultList();
+//	}
 }

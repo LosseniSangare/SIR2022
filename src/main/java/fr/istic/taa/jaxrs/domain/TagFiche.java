@@ -1,21 +1,18 @@
 package fr.istic.taa.jaxrs.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class TagFiche implements Serializable {
-	private int id;
-	private List <Fiche>fiche = new ArrayList<Fiche>();
-	private List <Tag>tag = new ArrayList<Tag>();
 	
+	private int id;
+	private Fiche fiche ;
+	private Tag tag ;
 	
 	public TagFiche() {
 		super();
@@ -33,27 +30,26 @@ public class TagFiche implements Serializable {
 		this.id = id;
 	}
 
-	 @OneToMany(mappedBy = "tag_fiche", cascade = CascadeType.PERSIST)
-	public List<Fiche> getFiche() {
+	@ManyToOne
+	public Fiche getFiche() {
 		return fiche;
 	}
 
 
-	public void setFiche(List<Fiche> fiche) {
+	public void setFiche(Fiche fiche) {
 		this.fiche = fiche;
 	}
 
-	
-	@OneToMany(mappedBy = "tag_fiche", cascade = CascadeType.PERSIST)
-	public List<Tag> getTag() {
+	@ManyToOne
+	public Tag getTag() {
 		return tag;
 	}
 
 
-	public void setTag(List<Tag> tag) {
+	public void setTag(Tag tag) {
 		this.tag = tag;
 	}
-	
+
 	
 	
 	

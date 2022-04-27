@@ -14,7 +14,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import fr.istic.taa.jaxrs.dto.FicheDTO;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name ="fiche_type")
@@ -26,11 +31,10 @@ public class Fiche implements Serializable {
 	private Date temps;
 	private String note;
 	private Section section;
-	private Url url ;
-	private HashGit hash_git;
+	private String url ;
+	private String hash_git;
 	private Utilisateur utilisateur;
-	
-	private TagFiche tag_fiche; 
+	private List<TagFiche> tagFiche = new ArrayList<TagFiche>();
 	
 	
 	public Fiche() {
@@ -40,7 +44,7 @@ public class Fiche implements Serializable {
 	
 
 	public Fiche(String libelle, Date date, Date temps, String note, Section section,
-			Url url,HashGit hash_git, Utilisateur utilisateur,TagFiche tag_fiche){
+			String url,String hash_git, Utilisateur utilisateur){
 		super();
 		this.libelle = libelle;
 		this.date = date;
@@ -50,7 +54,6 @@ public class Fiche implements Serializable {
 		this.url = url;
 		this.hash_git = hash_git;
 		this.utilisateur =utilisateur;
-		this.tag_fiche = tag_fiche;
 	}
 
 
@@ -72,16 +75,18 @@ public class Fiche implements Serializable {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-
-	public Date getDate() {
+	
+	@Temporal(TemporalType.DATE)
+	public java.util.Date getDate() {
 		return date;
 	}
-
+	
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
-	public Date getTemps() {
+	
+	@Temporal(TemporalType.DATE)
+	public java.util.Date getTemps() {
 		return temps;
 	}
 
@@ -102,25 +107,32 @@ public class Fiche implements Serializable {
 	}
 
 
-	@ManyToOne
-	public Url getUrl() {
+	public String getUrl() {
 		return url;
+	}
+	
+	public static Fiche dtoToFiche(FicheDTO dto) {
+		Fiche f = new Fiche();
+		f.date = dto.getDate();
+		f.temps = dto.getTemps();
+		f.note = dto.getNote();
+		f.hash_git = dto.getHash_git();
+		return f;
 	}
 
 
-	public void setUrl(Url url) {
+	public void setUrl(String url) {
 		this.url = url;
 	}
 
 
-	@ManyToOne
-	public HashGit getHash_git() {
+	public String getHash_git() {
 		return hash_git;
 	}
 
 
 
-	public void setHash_git(HashGit hash_git) {
+	public void setHash_git(String hash_git) {
 		this.hash_git = hash_git;
 	}
 
@@ -138,15 +150,14 @@ public class Fiche implements Serializable {
 
 
 
-	@ManyToOne
-	public TagFiche getTag_fiche() {
-		return tag_fiche;
+	@OneToMany(mappedBy = "fiche",cascade = CascadeType.PERSIST)
+	@JsonIgnore
+	public List<TagFiche> getTagFiche() {
+		return tagFiche;
 	}
-
-
-
-	public void setTag_fiche(TagFiche tag_fiche) {
-		this.tag_fiche = tag_fiche;
+	
+	public void setTagFiche(List<TagFiche> tagFiche) {
+		this.tagFiche = tagFiche;
 	}
 
 

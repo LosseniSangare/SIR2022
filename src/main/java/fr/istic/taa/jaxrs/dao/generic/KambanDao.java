@@ -1,6 +1,5 @@
 package fr.istic.taa.jaxrs.dao.generic;
 
-import java.util.List;
 
 import fr.istic.taa.jaxrs.domain.Kamban;
 
@@ -11,5 +10,9 @@ public class KambanDao extends AbstractJpaDao<Long, Kamban>{
 		super(Kamban.class);
 	}
 	
-
+//	public Kamban getKambanByName(String Name) {
+//		String query = "Select k.libelle from Kamban as k where k.libelle = loss";
+//		return "dqz";
+//}
+//	
 }

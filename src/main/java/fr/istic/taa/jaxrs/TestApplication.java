@@ -21,10 +21,13 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
+import fr.istic.taa.jaxrs.domain.Utilisateur;
 import fr.istic.taa.jaxrs.rest.EmployeeResource;
+import fr.istic.taa.jaxrs.rest.FicheRessource;
 import fr.istic.taa.jaxrs.rest.KambanRessource;
-import fr.istic.taa.jaxrs.rest.PetResourceOld;
 import fr.istic.taa.jaxrs.rest.SwaggerResource;
+import fr.istic.taa.jaxrs.rest.TagResource;
+import fr.istic.taa.jaxrs.rest.UtilisateurResource;
 import io.swagger.v3.core.jackson.SwaggerAnnotationIntrospector;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
@@ -37,11 +40,12 @@ public class TestApplication extends Application {
         final Set<Class<?>> clazzes = new HashSet<Class<?>>();
         
         clazzes.add(KambanRessource.class);
-        clazzes.add(PetResourceOld.class);
+        clazzes.add(FicheRessource.class);
+        clazzes.add(TagResource.class);
+        clazzes.add(UtilisateurResource.class);
         clazzes.add(EmployeeResource.class);
         clazzes.add(OpenApiResource.class);
         clazzes.add(SwaggerResource.class);
-
         
 
         return clazzes;

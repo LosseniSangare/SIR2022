@@ -6,8 +6,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import fr.istic.taa.jaxrs.dto.UtilisateurDTO;
 
 @Entity
 public class Utilisateur implements Serializable{
@@ -25,6 +30,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	@Id
+	
 	public String getEmail() {
 		return email;
 	}
@@ -41,6 +47,7 @@ public class Utilisateur implements Serializable{
 		this.nom = nom;
 	}
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
 	public List<Fiche> getFiche() {
 		return fiche;
@@ -48,6 +55,13 @@ public class Utilisateur implements Serializable{
 
 	public void setFiche(List<Fiche> fiche) {
 		this.fiche = fiche;
+	}
+	
+	public static Utilisateur dtoToUtilisateur(UtilisateurDTO userDto) {
+		Utilisateur newUser = new Utilisateur();
+		newUser.email = userDto.getEmail();
+		newUser.nom = userDto.getNom();
+		return newUser;
 	}
 	
 	

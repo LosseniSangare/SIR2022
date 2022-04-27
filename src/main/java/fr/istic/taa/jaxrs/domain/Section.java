@@ -15,7 +15,7 @@ import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class Section implements Serializable{
-	private long Id;
+	private Long Id;
 	private String libelle;
 	private Kamban kamban; 
 	private List<Fiche> fiche =new ArrayList<Fiche>();
@@ -34,7 +34,7 @@ public class Section implements Serializable{
 
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public Long getId() {
 		return Id;
 	}
 
@@ -60,7 +60,8 @@ public class Section implements Serializable{
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-
+	
+	
 	@OneToMany(mappedBy="section", cascade = CascadeType.PERSIST)
 	public List<Fiche> getFiche() {
 		return fiche;
