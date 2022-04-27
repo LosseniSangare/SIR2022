@@ -22,7 +22,6 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import fr.istic.taa.jaxrs.domain.Utilisateur;
-import fr.istic.taa.jaxrs.rest.EmployeeResource;
 import fr.istic.taa.jaxrs.rest.FicheRessource;
 import fr.istic.taa.jaxrs.rest.KambanRessource;
 import fr.istic.taa.jaxrs.rest.SwaggerResource;
@@ -43,7 +42,6 @@ public class TestApplication extends Application {
         clazzes.add(FicheRessource.class);
         clazzes.add(TagResource.class);
         clazzes.add(UtilisateurResource.class);
-        clazzes.add(EmployeeResource.class);
         clazzes.add(OpenApiResource.class);
         clazzes.add(SwaggerResource.class);
         
