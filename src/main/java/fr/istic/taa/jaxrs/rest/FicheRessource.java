@@ -14,7 +14,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.common.util.concurrent.Futures;
+
 import fr.istic.taa.jaxrs.dao.generic.FicheDao;
+import fr.istic.taa.jaxrs.domain.Bug;
+import fr.istic.taa.jaxrs.domain.FeaturesRequest;
 import fr.istic.taa.jaxrs.domain.Fiche;
 import fr.istic.taa.jaxrs.dto.FicheDTO;
 
@@ -98,5 +102,16 @@ public class FicheRessource {
 	public List<Fiche>getFicheByUserEmail(@PathParam("email") String email){
 		return fd.FindByUserEmail(email);
 	}
+	
+	@GET
+	@Path("/bugs")
+	public List<Bug>getBugs(){
+		return fd.findAllBug();
+	}
 
+	@GET
+	@Path("/requests")
+	public List<FeaturesRequest>getRequest(){
+		return fd.findFeatuaresRequest();
+	}
 }
