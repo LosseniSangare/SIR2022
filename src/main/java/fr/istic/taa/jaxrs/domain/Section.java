@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ManyToAny;
 
+import fr.istic.taa.jaxrs.dto.SectionDTO;
+
 @Entity
 public class Section implements Serializable{
 	private Long Id;
@@ -70,7 +72,14 @@ public class Section implements Serializable{
 	public void setFiche(List<Fiche> fiche) {
 		this.fiche = fiche;
 	}
-
+	
+	public static Section dtoToSection(SectionDTO sectionDTO) {
+		Section s = new Section();
+		s.libelle = sectionDTO.getLibelle();
+		
+		return s;
+	}
+	
 
 	
 }

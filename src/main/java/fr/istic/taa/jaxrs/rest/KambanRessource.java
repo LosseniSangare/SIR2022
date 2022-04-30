@@ -50,7 +50,7 @@ public class KambanRessource {
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Kamban UpdateById(@PathParam("id") Long id, KambanDTO kbDto) throws Exception {
+	public Kamban updateById(@PathParam("id") Long id, KambanDTO kbDto) throws Exception {
 		if(kd.findOne(id) != null) {
 			Kamban newKb = Kamban.dtoToKamban(kbDto);
 			newKb.setId(id);
