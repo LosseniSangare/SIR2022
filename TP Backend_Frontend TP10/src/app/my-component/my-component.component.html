@@ -1,0 +1,197 @@
+<div style="background-color:#948791;">
+<div style="text-align:center">
+
+    <div style="background-color:#cf21a4;">
+
+        <h1 style="color:rgb(37, 34, 34)">
+            Les Tableaux Kambans
+        </h1>
+    
+        Identifiant du tableau Kamban : <input [(ngModel)]="idKamban"> &nbsp; <input readonly [(ngModel)]="idKamban"> <br> <br>
+        Libelle du tableau Kamban : <input [(ngModel)]="libelleKamban"> &nbsp; <input readonly [(ngModel)]="libelleKamban"> &nbsp; &nbsp;
+        <button (click)="createKamban()">Créer un nouveau tableau Kamban</button>  <br>
+        
+        Ajout de Tableau Kanbam {{libelleKamban}}: {{etatcreate}}
+        
+        
+        
+        <BR> <BR>
+        
+        Liste des tableaux Kamban &nbsp;
+        <select [(ngModel)]="selectedKambanId">
+            <option [value]="kamban.id" 
+            *ngFor="let kamban of kambans">{{kamban.libelle}}</option>
+        </select> 
+        
+        <br><br>
+        
+        Recherchez un tableau Kamban
+        
+        <br>
+        <input [(ngModel)]="searchKambanLibelle"> 
+        &nbsp;
+        <select [(ngModel)]="selectedKambanId">
+            <option [value]="kamban.id" 
+            *ngFor="let kamban of kambans | filterKambanPipe: 'libelle' : searchKambanLibelle">{{kamban.libelle}}</option>
+        </select> 
+        <BR><br>
+        
+            Le Tableau Kamban selectionné est : Tableau Kamban {{selectedKambanId}}
+
+            
+    </div>
+
+  </div>
+
+
+
+
+    <BR> <BR><BR> <BR>
+        <div style="text-align:center">
+
+            <div style="background-color:#cf6721;">
+        
+                <h1 style="color:rgb(37, 34, 34)">
+                    Les Fiches
+                </h1>
+    
+      Libelle : <input [(ngModel)]="libelleFiche"> &nbsp; <input readonly [(ngModel)]="libelleFiche"> <br> <br>
+      temps : <input [(ngModel)]="tempsFiche"> &nbsp; <input readonly [(ngModel)]="tempsFiche"> <br> <br>
+      notes : <input [(ngModel)]="noteFiche"> &nbsp; <input readonly [(ngModel)]="noteFiche"> <br> <br>
+      Section : <input [(ngModel)]="SectionFiche"> &nbsp; <input readonly [(ngModel)]="SectionFiche"> <br> <br>
+      url : <input [(ngModel)]="urlFiche"> &nbsp; <input readonly [(ngModel)]="urlFiche"> <br> <br>
+      Utilisateur : <input [(ngModel)]="utilisateur"> &nbsp; <input readonly [(ngModel)]="utilisateur"> &nbsp; &nbsp;
+      <button (click)="createFiche()">Créer une nouvelle fiche dans un tableau kamban</button> <br>
+
+      Ajout de Fiche {{libelleFiche}}: {{etatcreateFiche}}
+    
+    
+    <BR> <BR>
+    
+    Liste des Fiches &nbsp;
+    <select [(ngModel)]="selectedFicheId">
+        <option [value]="fiche.id" 
+        *ngFor="let fiche of fiches">{{fiche.libelleFiche}}</option>
+    </select> 
+    
+    <br><br>
+    
+    Recherchez une fiche
+    
+    <br>
+    <input [(ngModel)]="searchKambanLibelle"> 
+    &nbsp;
+    <select [(ngModel)]="selectedKambanId">
+        <option [value]="fiche.id" 
+        *ngFor="let fiche of fiches | filterFichePipe: 'libelleFiche' : searchFicheLibelle">{{fiche.libelleFiche}}</option>
+    </select> 
+    <BR><br>
+    
+        La fiche selectionnée est : fiche {{selectedFicheId}}
+
+    </div>
+
+</div>
+    
+
+
+
+<BR> <BR><BR> <BR>
+
+        <div style="text-align:center">
+
+            <div style="background-color:#afcf21;">
+        
+                <h1 style="color:rgb(37, 34, 34)">
+                    Les Sections
+                </h1>
+
+            
+              Libelle : <input [(ngModel)]="libelleSection"> &nbsp; <input readonly [(ngModel)]="libelleSection"> <br><br>
+              Kamban Associé : <input [(ngModel)]="kambanAssocie"> &nbsp; <input readonly [(ngModel)]="kambanAssocie"> <br> <br>
+              
+            <button (click)="createSection()">Créer une nouvelle section</button>
+            
+            <br>
+            Ajout de Section {{libelleFiche}}: {{etatcreateSection}}
+
+            
+            <BR> <BR>
+            
+            Liste des Sections &nbsp;
+            <select [(ngModel)]="selectedSectionId">
+                <option [value]="section.id" 
+                *ngFor="let section of sections">{{section.libelleSection}}</option>
+            </select> 
+            
+            <br><br>
+            
+            Recherchez une section
+            
+            <br>
+            <input [(ngModel)]="searchSectionLibelle"> 
+            &nbsp;
+            <select [(ngModel)]="selectedKambanId">
+                <option [value]="section.id" 
+                *ngFor="let section of sections | filterSectionPipe: 'libelle' : searchSectionLibelle">{{section.libelle}}</option>
+            </select> 
+            <BR><br>
+            
+                La section sélectionée est : Section {{selectedSectionId}}
+
+            </div>
+
+        </div>          
+
+
+<BR> <BR><BR> <BR>
+
+
+
+    <div style="text-align:center">
+
+        <div style="background-color:#21cf47;">
+    
+            <h1 style="color:rgb(37, 34, 34)">
+                Les Utilisateurs
+            </h1>
+
+                
+                            
+                              Email : <input [(ngModel)]="email"> &nbsp; <input readonly [(ngModel)]="email"> <br><br>
+                              nom : <input [(ngModel)]="nom"> &nbsp; <input readonly [(ngModel)]="nom"> <br> <br>
+                              
+                            <button (click)="createUtilisateur()">Créer un nouvel Utilisateur</button>
+                            
+                            <br>
+                            Ajout d'Utilisateur {{nom}}: {{etatcreateUtilisateur}}
+
+                            <BR> <BR>
+                            
+                            Liste des Utilisateurs &nbsp;
+                            <select [(ngModel)]="selectedUtilisateurId">
+                                <option [value]="utilisateur.email" 
+                                *ngFor="let utilisateur of utilisateurs">{{utilisateur.nom}}</option>
+                            </select> 
+                            
+                            <br><br>
+                            
+                            Recherchez un utilisateur
+                            
+                            <br>
+                            <input [(ngModel)]="searchUtilisateurLibelle"> 
+                            &nbsp;
+                            <select [(ngModel)]="selectedUtilisateurId">
+                                <option [value]="utilisateur.email" 
+                                *ngFor="let utilisateur of utilisateurs | filterUtilisateurPipe: 'nom' : searchUtilisateurLibelle">{{utilisateur.nom}}</option>
+                            </select> 
+                            <BR><br>
+                            
+                                L'utilisateur sélectionée est : {{selectedUtilisateurId}}
+
+    
+                            </div>
+
+                        </div>  
+
+ </div>
