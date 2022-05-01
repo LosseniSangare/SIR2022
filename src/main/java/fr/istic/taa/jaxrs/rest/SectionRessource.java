@@ -16,7 +16,7 @@ import fr.istic.taa.jaxrs.dao.generic.SectionDao;
 import fr.istic.taa.jaxrs.domain.Section;
 import fr.istic.taa.jaxrs.dto.SectionDTO;
 
-@Path("/section")
+@Path("api/section")
 @Produces(MediaType.APPLICATION_JSON)
 public class SectionRessource {
 	
