@@ -17,7 +17,7 @@ import fr.istic.taa.jaxrs.domain.Tag;
 import fr.istic.taa.jaxrs.dto.TagDTO;
 
 
-@Path("/tag")
+@Path("api/tag")
 //@Produces({"application/json", "application/xml"})
 @Produces(MediaType.APPLICATION_JSON)
 public class TagResource {

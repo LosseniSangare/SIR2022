@@ -15,7 +15,7 @@ import fr.istic.taa.jaxrs.domain.Kamban;
 import fr.istic.taa.jaxrs.domain.Utilisateur;
 import fr.istic.taa.jaxrs.dto.UtilisateurDTO;
 
-@Path("/user")
+@Path("api/user")
 @Produces(MediaType.APPLICATION_JSON)
 public class UtilisateurResource {
 

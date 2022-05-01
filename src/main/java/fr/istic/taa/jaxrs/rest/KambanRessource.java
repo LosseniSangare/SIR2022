@@ -16,7 +16,7 @@ import fr.istic.taa.jaxrs.dao.generic.KambanDao;
 import fr.istic.taa.jaxrs.domain.Kamban;
 import fr.istic.taa.jaxrs.dto.KambanDTO;
 
-@Path("/kamban")
+@Path("api/kamban")
 //@Produces(MediaType.APPLICATION_JSON)
 @Produces({"application/json", "application/xml"})
 public class KambanRessource {

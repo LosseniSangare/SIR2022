@@ -22,7 +22,7 @@ import fr.istic.taa.jaxrs.domain.FeaturesRequest;
 import fr.istic.taa.jaxrs.domain.Fiche;
 import fr.istic.taa.jaxrs.dto.FicheDTO;
 
-@Path("/fiches")
+@Path("api/fiches")
 @Produces({ "application/json" })
 public class FicheRessource {
 	private FicheDao fd;
